@@ -1,0 +1,147 @@
+.dmz_hidden {
+	display: none !important;
+}
+.gallery_metabox_list {
+	display: flex;
+	flex-wrap: wrap;
+}
+li.image_holder {
+	margin: 10px 10px 0 10px;
+}
+
+/*=============================
+* * *СТИЛИ ДЛЯ МЕТАБОКСОВ* * *
+==============================*/
+.dmz_do_meta_boxes > li {
+	margin-bottom: 30px;
+	width: 100%;
+}
+.dmz_do_meta_boxes li input[type="text"],
+.dmz_do_meta_boxes li textarea {
+	width: 100%;
+}
+.dmz_do_meta_boxes li textarea {
+	resize: none;
+}
+.dmz_do_meta_boxes .fa-trash {
+	color: #ff0000 !important;
+}
+.dmz_do_meta_boxes input.dmz_upload_file {
+	margin-right: 15px;
+	background: none;
+	width: auto !important;
+}
+.img_status {
+	margin-top: 15px;
+	width: 150px;
+	height: 150px;
+	position: relative;
+}
+.img_status img {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.img_status .dmz_remove_file_button {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	font-size: 20px;
+	background: rgba(255, 255, 255, 0.5);
+	width: 30px;
+	height: 30px;
+	text-align: center;
+}
+.no_image,
+.dmz_upload_status {
+	margin-top: 5px;
+}
+.no_image a {
+	font-size: 18px;
+}
+.dmz_meta_desc {
+	margin: 0;
+	margin-top: 5px;
+	font-style: italic;
+}
+.dmz_meta_label {
+	display: block;
+	font-weight: 600;
+	margin-bottom: 10px;
+}
+.image_holder {
+	position: relative;
+}
+.image_holder .buttons_manage {
+	position: absolute;
+	bottom: 5px;
+	right: 1px;
+}
+.file-holder .buttons_manage {
+	margin-top: 5px;
+}
+.file-holder .buttons_manage .change-file {
+	margin-right: 3px;
+}
+.image_holder .buttons_manage a,
+.image_holder .buttons_manage a:hover,
+.image_holder .buttons_manage a:focus,
+.image_holder .buttons_manage a:active {
+	background: rgba(255, 255, 255, 0.5);
+	border: none;
+	box-shadow: none;
+}
+.image_holder .buttons_manage a.change-image {
+	color: #2271b1;
+	margin-right: 2px;
+}
+
+.dmz_do_meta_boxes input.dmz_upload_button {
+	padding: 0px 15px;
+	line-height: 30px;
+	border: 1px solid #2271b1;
+	color: #2271b1;
+	border-radius: 6px;
+	user-select: none;
+	font-weight: 600;
+	background: #fff;
+	cursor: pointer;
+	transition: all ease 0.3s;
+}
+
+.dmz_radio_btn {
+	display: inline-block;
+	margin-right: 10px;
+}
+.dmz_radio_btn input[type="radio"] {
+	display: none;
+}
+.dmz_radio_btn label {
+	display: inline-block;
+	cursor: pointer;
+	padding: 0px 15px;
+	line-height: 34px;
+	border: 1px solid #2271b1;
+	color: #2271b1;
+	border-radius: 6px;
+	user-select: none;
+	font-weight: 600;
+}
+
+/* Checked */
+.dmz_radio_btn input[type="radio"]:checked + label,
+.dmz_do_meta_boxes input.dmz_upload_button:hover {
+	background: #2271b1;
+	color: #fff;
+	border: 1px solid #fff;
+}
+
+/* Disabled */
+.dmz_radio_btn input[type="radio"]:disabled + label {
+	background: #efefef;
+	color: #666;
+}
