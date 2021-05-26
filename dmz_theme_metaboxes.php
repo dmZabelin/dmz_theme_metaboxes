@@ -167,7 +167,8 @@ class DmzMetaBoxes
 		if( !( isset( $post_id ) || is_page() ) ) return false;
 
 		$term = get_the_terms( $post_id, $meta_option['taxonomy'] );
-
+		$slugs_array[] = '';
+		
 		foreach ($term as $slug) {
 			$slugs_array[] = $slug->slug;
 		}
