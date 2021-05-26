@@ -74,6 +74,7 @@ class DmzMetaBoxes
 		add_action( 'save_post', [ &$this, 'save' ] );
 
 		add_filter( 'dmz_show_on', [ &$this, 'dmz_add_for_page_template' ], 10, 2 );
+		add_filter( 'dmz_show_on', [ &$this, 'dmz_add_for_term' ], 10, 2 );
 	}
 
 	function dmz_admin_scripts() 
@@ -105,6 +106,7 @@ class DmzMetaBoxes
 	{
 		$this->meta_options['context'] = empty( $this->meta_options['context'] ) ? 'normal' : $this->meta_options['context'];
 		$this->meta_options['priority'] = empty( $this->meta_options['priority'] ) ? 'high' : $this->meta_options['priority'];
+		$this->meta_options['taxonomy'] = empty( $this->meta_options['taxonomy'] ) ? 'category' : $this->meta_options['taxonomy'];
 		$this->meta_options['show_on'] = empty( $this->meta_options['show_on'] ) ? ['key' => false, 'value' => false] : $this->meta_options['show_on'];
 		
 
@@ -117,7 +119,8 @@ class DmzMetaBoxes
 				[&$this, 'show_meta_content'], 
 				$post_type, 
 				$this->meta_options['context'], 
-				$this->meta_options['priority']
+				$this->meta_options['priority'],
+				$this->meta_options['taxonomy']
 			);
 		}
 	}
@@ -142,6 +145,36 @@ class DmzMetaBoxes
 		$meta_option['show_on']['value'] = !is_array( $meta_option['show_on']['value'] ) ? [$meta_option['show_on']['value']] : $meta_option['show_on']['value'];
 
 		if( in_array( $current_template, $meta_option['show_on']['value'] ) ) 
+			return true;
+		else
+			return false;
+	}
+	
+	/**
+	* *Добавляю фильтр
+	* *Используйте фильтр «dmz_show_on» для дальнейшего уточнения условий, при которых отображается метабокс.
+	* *Ниже вы можете ограничить его по терминам таксономии
+	**/
+	
+	function dmz_add_for_term( $display, $meta_option ) 
+	{
+		if( 'term' !== $meta_option['show_on']['key'] )
+			return $display;
+
+
+		if( isset( $_GET['post'] ) ) $post_id = $_GET['post']; 
+		elseif( isset( $_POST['post_ID'] ) ) $post_id = $_POST['post_ID']; 
+		if( !( isset( $post_id ) || is_page() ) ) return false;
+
+		$term = get_the_terms( $post_id, $meta_option['taxonomy'] );
+
+		foreach ($term as $slug) {
+			$slugs_array[] = $slug->slug;
+		}
+
+		$meta_option['show_on']['value'] = !is_array( $meta_option['show_on']['value'] ) ? [$meta_option['show_on']['value']] : $meta_option['show_on']['value'];
+
+		if( in_array( $meta_option['show_on']['value'][0], $slugs_array ) )
 			return true;
 		else
 			return false;

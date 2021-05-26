@@ -9,7 +9,9 @@
 			'id'				=> 'meta_id',
 			'title'			=> esc_html__( 'Заголовок мета блока', 'dmz_hram_site' ),
 			'post_type'		=> [ 'about', 'page' ],
-			//'show_on'		=> ['key' => 'page-template', 'value' => ['template-page-home.php']],
+			//'show_on'		=> ['key' => 'page-template', 'value' => ['template-your-page.php']], - Строка для фильтра по шаблону страницы;
+			//'show_on'		=> ['key' => 'term', 'value' => ['slug-your-term']], - Строка для фильтра по термам;
+			//'taxonomy'	=> 'your-taxonomy' - В этой строке указываем таксономию по умолчанию 'Category';
 			'context'		=> 'normal',
 			'priority'		=>	'high',
 			'fields'			=> [ 
